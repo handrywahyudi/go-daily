@@ -30,4 +30,5 @@ func main() {
 	anotherSlice := make([]int, 4)
 	fmt.Printf("A new slice with 4 elements: ")
 	printSlice(anotherSlice)
+	println(cap(anotherSlice))
 }
