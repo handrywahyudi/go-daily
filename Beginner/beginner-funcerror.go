@@ -30,4 +30,15 @@ func main() {
 	if rem != nil {
 		fmt.Println(rem)
 	}
+
+	result, rem, err = divison(2, 0)
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println("The result is ", result)
+	}
+
+	if rem != nil {
+		fmt.Println(rem)
+	}
 }
