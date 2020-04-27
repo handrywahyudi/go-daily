@@ -1,3 +1,5 @@
+// finding out the number of times a character appears.
+
 package main
 
 import (
@@ -7,7 +9,7 @@ import (
 
 func main() {
 	var s [3]string
-	s[0] = "1 b 3 1 a a b"
+	s[0] = "1 b 3 1 b b b"
 	s[1] = "11 a 1 1 1 1 a a"
 	s[2] = "-1 b 1 -4 a 1"
 

@@ -1,3 +1,5 @@
+// Getting random number when min and max number given from cli command.
+
 package main
 
 import (

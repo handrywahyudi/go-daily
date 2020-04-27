@@ -1,3 +1,5 @@
+// Getting summary of character on array column.
+
 package main
 
 import (

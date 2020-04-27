@@ -1,3 +1,6 @@
+// Write a Go program that keeps reading integers until you give the number 0 as input,
+// then it prints the minimum and maximum integer in the input.
+
 package main
 
 import (
@@ -8,8 +11,6 @@ import (
 	"strings"
 )
 
-// Write a Go program that keeps reading integers until you give the number 0 as input,
-// then it prints the minimum and maximum integer in the input.
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	empAge := []int{}
