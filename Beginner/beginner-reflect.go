@@ -38,6 +38,11 @@ func main() {
 	fmt.Printf("X4 type %s.\n", typeOfX4)
 	fmt.Printf("The fields of x4 are %s.\n", typeOfX4)
 
+	for i := 0; i < st4.NumField(); i++ {
+		fmt.Printf("%d Field name: %s\n", i, typeOfX4.Field(i).Name)
+		fmt.Printf("Type: %s ", st4.Field(i).Type())
+		fmt.Printf("and Value: %v\n", st4.Field(i).Interface())
+	}
 	// fmt.Println(st1)
 	// fmt.Println(st2)
 	// fmt.Println(st3)
