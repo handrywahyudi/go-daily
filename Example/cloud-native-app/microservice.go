@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-        "os"
+	"os"
 )
 
 func main() {
@@ -13,12 +13,12 @@ func main() {
 	http.ListenAndServe(port(), nil)
 }
 
-func port() string{
-    port := os.Getenv("PORT")
-    if len(port) == 0 {
-        port = "9090"
-    }
-    return ":" + port
+func port() string {
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = "9090"
+	}
+	return ":" + port
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -32,8 +32,8 @@ func cloud(w http.ResponseWriter, r *http.Request) {
 }
 
 func echo(w http.ResponseWriter, r *http.Request) {
-    message := r.URL.Query()["message"][0]
+	message := r.URL.Query()["message"][0]
 
-    w.Header().Add("Content-type", "text/plain")
-    fmt.Fprintf(w, message)
+	w.Header().Add("Content-type", "text/plain")
+	fmt.Fprintf(w, message)
 }
