@@ -25,6 +25,11 @@ func main() {
 	sort.Slice(mySlice, func(i, j int) bool {
 		return mySlice[i].weight < mySlice[j].weight
 	})
+	fmt.Println("<:", mySlice)
 
+	sort.Slice(mySlice, func(i, j int) bool {
+		return mySlice[i].weight > mySlice[j].weight
+	})
 	fmt.Println(">:", mySlice)
+
 }
