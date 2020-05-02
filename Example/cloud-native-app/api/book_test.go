@@ -13,3 +13,11 @@ func TestBookToJson(t *testing.T) {
 	assert.Equal(t, `{"Title":"Abrakadabra","Author":"Brama Kumbara","ISBN":"085232143"}`,
 		string(json), "Json Marshalling Wrong.")
 }
+
+func TestBookFromJson(t *testing.T) {
+	json := []byte(`{"Title":"Abrakadabra","Author":"Brama Kumbara","ISBN":"085232143"}`)
+	book := FromJSON(json)
+
+	assert.Equal(t, myBook{Title: "Abrakadabra", Author: "Brama Kumbara", ISBN: "085232143"},
+		book, "Json Unmarshalling Wrong.")
+}
