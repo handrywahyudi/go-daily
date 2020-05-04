@@ -13,7 +13,7 @@ import (
 // var Books = []myBook{
 // 	myBook{Title: "Go For Dummies", Author: "Linkedin Learning", ISBN: "2321231"},
 // 	myBook{Title: "Algorithm With Go", Author: "Coursera", ISBN: "2321231"},
-}
+// }
 
 type myBook struct {
 	Title       string `json:"title"`
@@ -22,9 +22,9 @@ type myBook struct {
 	Description string `json:"description,omitempty"`
 }
 
-var Books = map[string]Book {
-    "0983721": Books{Title:"Go For Dummies", Authro: "Linkedin Learning", ISBN: "0983721"}
-    "3212345": Books{Title:"Algorithm With Go", Authro: "Linkedin Learning", ISBN: "3212345"}
+var books = map[string]myBook{
+	"0983721": myBook{Title: "Go For Dummies", Author: "Linkedin Learning", ISBN: "0983721"},
+	"3212345": myBook{Title: "Algorithm With Go", Author: "Linkedin Learning", ISBN: "3212345"},
 }
 
 func (b myBook) ToJSON() []byte {
@@ -57,5 +57,17 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		books := AllBooks()
 		writeJSON(w, books)
+	default:
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Unsupported request method."))
+	}
+}
+
+func AllBooks() []Book {
+	values := make([]Book, len(books))
+	idx := 0
+	for, _, book := range books{
+		values[idx] = book
+		idx++
 	}
 }

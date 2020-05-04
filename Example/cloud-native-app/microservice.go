@@ -13,6 +13,7 @@ func main() {
 	http.HandleFunc("/cloud", cloud)
 	http.HandleFunc("/api/echo", echo)
 	http.HandleFunc("/api/books", api.BooksHandleFunc)
+	http.HandleFunc("/api/books/", api.BooksHandleFunc)
 	http.ListenAndServe(port(), nil)
 }
 
