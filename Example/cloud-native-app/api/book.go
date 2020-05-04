@@ -66,8 +66,17 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 func AllBooks() []Book {
 	values := make([]Book, len(books))
 	idx := 0
-	for, _, book := range books{
+	for _, book := range books {
 		values[idx] = book
 		idx++
 	}
+}
+
+func writeJSON(w http.ResponseWriter, i interface{}) {
+	b, err := json.Marshal(i)
+	if err != nil {
+		panic(err)
+	}
+	w.Header().Add("Content-Type", "Application/json; charset:utf-8")
+	w.Write(b)
 }
