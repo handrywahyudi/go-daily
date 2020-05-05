@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -57,19 +58,27 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		books := AllBooks()
 		writeJSON(w, books)
+	case http.MethodPost:
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+		book := FromJSON(body)
+		isbn, created := CreteBook(book)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Unsupported request method."))
 	}
 }
 
-func AllBooks() []Book {
-	values := make([]Book, len(books))
+func AllBooks() []myBook {
+	values := make([]myBook, len(books))
 	idx := 0
 	for _, book := range books {
 		values[idx] = book
 		idx++
 	}
+	return values
 }
 
 func writeJSON(w http.ResponseWriter, i interface{}) {
