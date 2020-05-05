@@ -64,7 +64,7 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 		book := FromJSON(body)
-		isbn, created := CreteBook(book)
+		isbn, created := CreateBook(book)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Unsupported request method."))
@@ -88,4 +88,13 @@ func writeJSON(w http.ResponseWriter, i interface{}) {
 	}
 	w.Header().Add("Content-Type", "Application/json; charset:utf-8")
 	w.Write(b)
+}
+
+func CreateBook(book myBook) (string, bool) {
+	_, exists := books[book.ISBN]
+	if exists {
+		return "", false
+	}
+	books[book.ISBN] = book
+	return book.ISBN, true
 }
