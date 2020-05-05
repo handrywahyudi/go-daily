@@ -65,6 +65,12 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 		}
 		book := FromJSON(body)
 		isbn, created := CreateBook(book)
+		if created {
+			w.Header().Add("Location", "/api/books"+isbn)
+			w.WriteHeader(http.StatusCreated)
+		} else {
+			w.WriteHeader(http.StatusConflict)
+		}
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Unsupported request method."))
