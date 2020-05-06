@@ -77,6 +77,38 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func BookHandleFunc(w http.ResponseWriter, r *http.Request) {
+	isbn := r.URL.Path[len("/api/books/"):]
+
+	switch method := r.Method; method {
+	case http.MethodGet:
+		book, found := GetBook(isbn)
+		if found {
+			writeJSON(w, book)
+		} else {
+			w.WriteHeader(http.StatusNotFound)
+		}
+	case http.MethodPut:
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+		book := FromJSON(body)
+		exists := UpdateBook(isbn, book)
+		if exists {
+			w.WriteHeader(http.StatusOK)
+		} else {
+			w.WriteHeader(http.StatusNotFound)
+		}
+	case http.MethodDelete:
+		DeleteBook(isbn)
+		w.WriteHeader(http.StatusOK)
+	default:
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Unsupported request method."))
+	}
+}
+
 func AllBooks() []myBook {
 	values := make([]myBook, len(books))
 	idx := 0
@@ -103,4 +135,21 @@ func CreateBook(book myBook) (string, bool) {
 	}
 	books[book.ISBN] = book
 	return book.ISBN, true
+}
+
+func GetBook(isbn string) (myBook, bool) {
+	book, found := books[isbn]
+	return book, found
+}
+
+func UpdateBook(isbn string, book myBook) bool {
+	_, exists := books[isbn]
+	if exists {
+		books[isbn] = book
+	}
+	return exists
+}
+
+func DeleteBook(isbn string) {
+	delete(books, isbn)
 }
