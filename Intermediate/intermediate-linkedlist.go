@@ -18,8 +18,8 @@ func main() {
 		}
 
 		if v == t.Value {
-		fmt.Println("Node already exist:", v)
-		return -1
+		    fmt.Println("Node already exist:", v)
+		    return -1
 		}
 
 		if t.Next == nil {
@@ -27,5 +27,18 @@ func main() {
 			return -2
 		}
 
+		func traverse(t, *Node) {
+			if t == nil {
+				fmt.Println("-> Empty List.")
+				return
+			}
+
+			for t != nil {
+				fmt.Print("%d-> ", t.Value)
+				t = t.Next
+			}
+
+			fmt.Println()
+		}
 	}
 }
