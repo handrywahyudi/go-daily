@@ -36,3 +36,13 @@ func traverse(hash *HashTable) {
 		}
 	}
 }
+
+func main() {
+	table := make(map[int]*Node, 10)
+	hash := &HashTable{Table: table, Size: 10}
+	fmt.Println("Number of spaces:", hash.Size)
+	for i := 0; i < 95; i++ {
+		insert(hash, i)
+	}
+	traverse(hash)
+}
