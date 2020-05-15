@@ -20,4 +20,8 @@ func main() {
 
 	fmt.Println("We have a", dogsName)
 	dog()
+
+	const name string = "handry"
+	name = "wahyudi"
+	fmt.Println(name)
 }
