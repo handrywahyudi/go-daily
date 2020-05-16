@@ -47,4 +47,24 @@ func main() {
 		fmt.Println(el["name"], el["state"])
 	}
 
+	// How to find the smallest number
+	x := []int{
+		48, 96, 86, 68,
+		57, 82, 63, 70,
+		37, 34, 83, 27,
+		19, 97, 9, 17,
+	}
+
+	var n, smallest int
+	n = x[0]
+	for _, number := range x {
+		if number < n {
+			n = number
+			smallest = number
+		}
+	}
+
+	fmt.Println(x)
+	fmt.Println("The smallest number is ", smallest)
+
 }
