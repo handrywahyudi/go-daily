@@ -5,7 +5,14 @@ import (
 )
 
 func main() {
-	x := make(map[string]int)
-	x["age"] = 12
-	fmt.Println(x)
+	number := make(map[string]int)
+	number["one"] = 1
+	number["two"] = 2
+	number["three"] = 3
+	number["four"] = 4
+	number["five"] = 5
+	number["six"] = 6
+
+	delete(number, "one")
+	fmt.Println(number)
 }
