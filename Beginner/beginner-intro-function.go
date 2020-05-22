@@ -22,9 +22,40 @@ func add(args ...int) int {
 	return total
 }
 
+// Use closure function
+func makeEvenNumber() func() uint {
+	i := uint(0)
+	return func() (num uint) {
+		num = i
+		i += 2
+		return
+	}
+}
+
 func main() {
 	number := []float64{5, 5, 5, 5, 5}
 	fmt.Println(average(number))
 
 	fmt.Println(add(add(1, 2, 3)))
+
+	// Use closure
+	addTwoNumbers := func(x, y int) int {
+		return x + y
+	}
+	fmt.Println(addTwoNumbers(3, 3))
+
+	x := 0
+	increment := func() int {
+		x++
+		return x
+	}
+	fmt.Println(increment())
+	fmt.Println(increment())
+
+	nextEven := makeEvenNumber()
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
+	fmt.Println(nextEven())
 }
