@@ -40,6 +40,15 @@ func factorial(z uint) uint {
 	return z * factorial(z-1)
 }
 
+// Use defer
+func first() {
+	fmt.Println("First")
+}
+
+func second() {
+	fmt.Println("Second")
+}
+
 func main() {
 	number := []float64{5, 5, 5, 5, 5}
 	fmt.Println(average(number))
@@ -69,4 +78,15 @@ func main() {
 
 	// Use recursion
 	fmt.Println(factorial(2))
+
+	// Use defer
+	// defer second()
+	// first()
+
+	// Use panic and recover
+	defer func() {
+		str := recover()
+		fmt.Println(str)
+	}()
+	panic("PANIC")
 }
