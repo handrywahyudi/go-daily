@@ -32,6 +32,14 @@ func makeEvenNumber() func() uint {
 	}
 }
 
+// Use recursion function
+func factorial(z uint) uint {
+	if z == 0 {
+		return 1
+	}
+	return z * factorial(z-1)
+}
+
 func main() {
 	number := []float64{5, 5, 5, 5, 5}
 	fmt.Println(average(number))
@@ -58,4 +66,7 @@ func main() {
 	fmt.Println(nextEven())
 	fmt.Println(nextEven())
 	fmt.Println(nextEven())
+
+	// Use recursion
+	fmt.Println(factorial(2))
 }
