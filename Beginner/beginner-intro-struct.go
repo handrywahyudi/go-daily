@@ -25,10 +25,25 @@ func (c *Rectangle) area() float64 {
 	return l * w
 }
 
+// Inteface
+type Shape interface {
+	area() float64
+}
+
+func totalArea(shapes ...Shape) float64 {
+	var area float64
+	for _, s := range shapes {
+		area += s.area()
+	}
+	return area
+}
+
 func main() {
 	c := Circle{0, 0, 5}
 	fmt.Println(circleArea(&c))
 
 	r := Rectangle{0, 0, 10, 10}
 	fmt.Println(r.area())
+
+	fmt.Println(totalArea(&c, &r))
 }
